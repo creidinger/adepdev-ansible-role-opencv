@@ -22,5 +22,22 @@
     - libjpeg-dev
     - libpng-dev
     - libtiff-dev
-    - libjasper-dev
+    # - libjasper-dev
     - libdc1394-22-dev
+
+# source: https://github.com/opencv/opencv/issues/8622
+- debug:
+    msg: "Performing workaround to install libjasper-dev"
+
+- name: Adding apt repo for jasper
+  apt_repository:
+    repo:  deb http://security.ubuntu.com/ubuntu xenial-security main
+    state: present
+
+- name: Install jasper libraries
+  package:
+    pkg: "{{ item }}"
+    state: present
+  loop:
+    - libjasper1
+    - libjasper-dev
