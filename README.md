@@ -1,0 +1,1 @@
+# adepdev-ansible-role-opencv
