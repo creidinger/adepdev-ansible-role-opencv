@@ -45,12 +45,14 @@
 - name: Download opencv git repo
   git:
     repo: https://github.com/opencv/opencv.git
-    dest: "{{ home_dir }}"
+    dest: "{{ home_dir }}/opencv"
+    update: yes
+    clone: yes
 
 - name: Make a build file to build OpenCV project
   file:
     path: "{{ home_dir }}/opencv/build"
-    state: directoy
+    state: directory
 
 - name: Build OpenCV
   command: "cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local {{ home_dir }}/opencv"
